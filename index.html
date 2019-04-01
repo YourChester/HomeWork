@@ -48,11 +48,7 @@
                     </tr>
                     <tr>
                         <td>Name</td>
-                        <td> {{name}} </td>
-                    </tr>
-                    <tr>
-                        <td>Last name</td>
-                        <td> {{lastName}} </td>
+                        <td> {{fullName}} </td>
                     </tr>
                     <tr>
                         <td>Phone</td>
@@ -86,13 +82,18 @@
                 guests: [],
                 visible: true
             },
+            computed: {
+                fullName() {
+                    return this.name + ' ' + this.lastName
+                }
+            },
             methods: {
                 addGuests() {
                     this.guests[this.numbers] = ''
                     this.numbers++
                 },
                 deleteGuests(index) {
-                    delete this.guests[index]
+                    this.guests.splice(index, 1)
                     this.numbers--
                 }
             }
