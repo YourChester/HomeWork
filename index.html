@@ -32,9 +32,9 @@
                     <h3 class="pr-2">Guests:</h3>
                     <button class="btn btn-primary" @click.prevent="addGuests">+</button>
                 </div>
-                <div class="form-group" v-for="(number, index) of numbers">
-                    <label for="phone" @dblclick="deleteGuests(index)">Guests {{index+1}}</label>
-                    <input class="form-control" type="text" name="phoneNumber" id="phome" v-model="guests[index]">
+                <div class="form-group" v-for="(guest, index) of guests">
+                    <label for="guests" @dblclick="deleteGuests(index)">Guests {{index+1}}</label>
+                    <input class="form-control" type="text" name="guests" id="guests" v-model="guests[index]">
                 </div>
                 <hr>
                 <button class="btn btn-success" @click.prevent="visible = !visible" >Send data</button>
@@ -89,12 +89,10 @@
             },
             methods: {
                 addGuests() {
-                    this.guests[this.numbers] = ''
-                    this.numbers++
+                    this.guests.push('')
                 },
                 deleteGuests(index) {
                     this.guests.splice(index, 1)
-                    this.numbers--
                 }
             }
         })
