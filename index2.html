@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="icon" href="img/logo.png" type="image/png">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Intensiv_VueJS</title>
+</head>
+<body>
+    <div class="container mt-4" id="app">
+        <div class="row justify-content-center">
+            <div class="col-6">
+                <div class="progress mb-4">
+                    <div class="progress-bar" :style="{width: (num = counter.email + counter.name + counter.pass + counter.country) + '%'}" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" ></div>
+                </div>
+                <form>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input class="form-control" type="text" name="email" id="email" v-model="email" ref="email" @blur="chekEmail()">
+                    </div>
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input class="form-control" type="text" name="name" id="name" v-model="name" ref="name" @blur="chekName()">
+                    </div>
+                    <div class="form-group">
+                        <label for="pass">Password</label>
+                        <input class="form-control" type="password" name="password" id="pass" v-model="pass" ref="pass" @blur="chekPass()">
+                    </div>
+                    <div class="form-group">
+                        <label for="country">Country</label>
+                        <input class="form-control" type="text" name="country" id="phome" v-model="country" ref="country" @blur="chekCountry()">
+                    </div>
+                    <button class="btn btn-primary" ref="btn" disabled @clikc.prevent="">Send data</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- script -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script type="text/javascript">
+        new Vue({
+            el: '#app',
+            data: {
+                email: '',
+                name: '',
+                pass: '',
+                country: '',
+                num: 0,
+                counter: {
+                    email: 0,
+                    name: 0,
+                    pass: 0,
+                    country: 0
+                }
+            },
+            watch: {
+                num() {
+                    if(this.num == 100)
+                        this.$refs.btn.removeAttribute('disabled')
+                    else
+                        this.$refs.btn.setAttribute('disabled', 'disabled')
+                }
+            },
+            methods: {
+                chekEmail() {
+                    const pattern = /^[a-zA-Z]{2,30}$/ 
+                    if(!pattern.test(this.email)) {
+                        this.counter.email = 0
+                        this.$refs.email.classList.remove('is-valid')
+                        this.$refs.email.classList.add('is-invalid')
+                    }
+                    else {
+                        this.counter.email = 25
+                        this.$refs.email.classList.remove('is-invalid')
+                        this.$refs.email.classList.add('is-valid')
+                    }
+                },
+                chekName() {
+                    const pattern = /^[a-zA-z]{2,30}$/ 
+                    if(!pattern.test(this.name)) {
+                        this.counter.name = 0
+                        this.$refs.name.classList.remove('is-valid')
+                        this.$refs.name.classList.add('is-invalid')
+                    }
+                    else {
+                        this.counter.name = 25
+                        this.$refs.name.classList.remove('is-invalid')
+                        this.$refs.name.classList.add('is-valid')
+                    }
+                },
+                chekPass() {
+                    const pattern = /^[a-zA-z]{2,30}$/
+                    if(!pattern.test(this.pass)) {
+                        this.counter.pass = 0
+                        this.$refs.pass.classList.remove('is-valid')
+                        this.$refs.pass.classList.add('is-invalid')
+                    }
+                    else {
+                        this.counter.pass = 25
+                        this.$refs.pass.classList.remove('is-invalid')
+                        this.$refs.pass.classList.add('is-valid')
+                    }
+                },
+                chekCountry() {
+                    const pattern = /^[a-zA-z]{2,30}$/
+                    if(!pattern.test(this.country)) {
+                        this.counter.country = 0
+                        this.$refs.country.classList.remove('is-valid')
+                        this.$refs.country.classList.add('is-invalid')
+                    }
+                    else {
+                        this.counter.country = 25
+                        this.$refs.country.classList.remove('is-invalid')
+                        this.$refs.country.classList.add('is-valid')
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+</html>
