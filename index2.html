@@ -32,7 +32,7 @@
                         <label for="country">Country</label>
                         <input class="form-control" type="text" name="country" id="phome" v-model="country" ref="country" @blur="chekCountry()">
                     </div>
-                    <button class="btn btn-primary" ref="btn" disabled @clikc.prevent="">Send data</button>
+                    <button class="btn btn-primary" ref="btn" disabled>Send data</button>
                 </form>
             </div>
         </div>
@@ -65,7 +65,7 @@
             },
             methods: {
                 chekEmail() {
-                    const pattern = /^[a-zA-Z]{2,30}$/ 
+                    const pattern = /^[a-zA-Z]{2,30}@[a-zA-Z]{4,8}\.[a-z]{2,3}$/ 
                     if(!pattern.test(this.email)) {
                         this.counter.email = 0
                         this.$refs.email.classList.remove('is-valid')
